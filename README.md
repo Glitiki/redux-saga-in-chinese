@@ -96,17 +96,19 @@ function* mySaga() {
 
 #### `main.js`
 ```javascript
+// ...
 import { createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 
-import reducer from './reducers'
-import mySaga from './sagas'
+// ...
+import { helloSaga } from './sagas'
 
-const sagaMiddleware = createSagaMiddleware(mySaga)
+const sagaMiddleware = createSagaMiddleware()
 const store = createStore(
   reducer,
   applyMiddleware(sagaMiddleware)
 )
+sagaMiddleware.run(helloSaga)
 
 // render the application
 ```
